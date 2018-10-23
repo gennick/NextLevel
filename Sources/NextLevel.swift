@@ -1340,21 +1340,21 @@ extension NextLevel {
         var didChangeOrientation = false
         let currentOrientation = AVCaptureVideoOrientation.avorientationFromUIDeviceOrientation(UIDevice.current.orientation)
         
-        if let previewConnection = self.previewLayer.connection {
+        if !self.isRecording, let previewConnection = self.previewLayer.connection {
             if previewConnection.isVideoOrientationSupported && previewConnection.videoOrientation != currentOrientation {
                 previewConnection.videoOrientation = currentOrientation
                 didChangeOrientation = true
             }
         }
         
-        if let videoOutput = self._videoOutput, let videoConnection = videoOutput.connection(with: AVMediaType.video) {
+        if !self.isRecording, let videoOutput = self._videoOutput, let videoConnection = videoOutput.connection(with: AVMediaType.video) {
             if videoConnection.isVideoOrientationSupported && videoConnection.videoOrientation != currentOrientation {
                 videoConnection.videoOrientation = currentOrientation
                 didChangeOrientation = true
             }
         }
         
-        if let photoOutput = self._photoOutput, let photoConnection = photoOutput.connection(with: AVMediaType.video) {
+        if !self.isRecording, let photoOutput = self._photoOutput, let photoConnection = photoOutput.connection(with: AVMediaType.video) {
             if photoConnection.isVideoOrientationSupported && photoConnection.videoOrientation != currentOrientation {
                 photoConnection.videoOrientation = currentOrientation
                 didChangeOrientation = true
