@@ -283,7 +283,7 @@ public class NextLevel: NSObject {
     // camera configuration
     
     /// The current capture mode of the device.
-    public var captureMode: NextLevelCaptureMode = .video {
+    public var captureMode: NextLevelCaptureMode = .videoWithoutAudio {
         didSet {
             guard
                 self.captureMode != oldValue
