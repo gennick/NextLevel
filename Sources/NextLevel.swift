@@ -1007,6 +1007,7 @@ extension NextLevel {
             self._videoOutput?.alwaysDiscardsLateVideoFrames = false
             
             var videoSettings = [String(kCVPixelBufferPixelFormatTypeKey):Int(kCVPixelFormatType_32BGRA)]
+            #if !targetEnvironment(simulator)
             if let formatTypes = self._videoOutput?.availableVideoPixelFormatTypes {
                 var supportsFullRange = false
                 var supportsVideoRange = false
@@ -1024,6 +1025,7 @@ extension NextLevel {
                     videoSettings[String(kCVPixelBufferPixelFormatTypeKey)] = Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
                 }
             }
+            #endif
             self._videoOutput?.videoSettings = videoSettings
         }
         
