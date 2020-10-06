@@ -3071,7 +3071,7 @@ extension NextLevel {
     
     @objc internal func deviceOrientationDidChange(_ notification: NSNotification) {
         if self.automaticallyUpdatesDeviceOrientation {
-            self._sessionQueue.sync {
+            self._sessionQueue.async {
                 self.updateVideoOrientation()
             }
         }
